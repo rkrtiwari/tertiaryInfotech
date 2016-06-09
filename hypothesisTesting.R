@@ -30,6 +30,13 @@ polygon( c(xpol, rev(xpol)), c(ypolbase, rev(ypol)), col = "blue")
 textxy(x1+0.5, y1+0.005, labs = format(p, digits=2), cex = 1)
 
 
+## binomial distribution
+nt <- 100
+ps <- 0.70
+xvals <- 0:nt
+yvals <- dbinom(xvals, nt, ps)
+plot(xvals, yvals, type = "b", col="red", xlab = "Trial", ylab = "Success Probability")
+
 ## t-test
 # unpaired data
 boxplot(extra ~ group, data = sleep, col="green", xlab="Drug Type", 
