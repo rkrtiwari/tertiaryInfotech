@@ -67,7 +67,9 @@ t.test(drug1, drug2, paired = TRUE)
 t.test(drug1, drug2, paired = TRUE)$conf
 
 
-
-
+### correlation
+head(swiss)
+round(cor(swiss),2)
+with(swiss, plot(Fertility, Examination))
 
 
