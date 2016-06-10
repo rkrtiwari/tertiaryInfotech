@@ -23,7 +23,6 @@ label <- paste("Colored Area", format(p, digits=2))
 
 par(mfrow=c(1,1))
 plot(x,y, xlim = c(0,15), ylim = c(0, 0.25), type = "l", ylab = "Density")
-#points(x1, y1, pch = 4)
 abline(v=x1)
 abline(h=0)
 polygon( c(xpol, rev(xpol)), c(ypolbase, rev(ypol)), col = "blue")
@@ -38,7 +37,7 @@ yvals <- dbinom(xvals, nt, ps)
 plot(xvals, yvals, type = "b", col="red", xlab = "Trial", ylab = "Success Probability")
 
 ## t-test
-# unpaired data
+## unpaired data
 boxplot(extra ~ group, data = sleep, col="green", xlab="Drug Type", 
         ylab = "Increase in Sleep Hours")
 
@@ -47,8 +46,8 @@ drug2 <- sleep$extra[11:20]
 t.test(drug1, drug2)
 t.test(drug1, drug2)$conf
 
-
-# paired Data
+## t-test
+## paired Data
 g1 <- sleep[sleep$group==1,]
 g1$group <- as.numeric(g1$group)
 g2 <- sleep[sleep$group==2,]
@@ -71,5 +70,12 @@ t.test(drug1, drug2, paired = TRUE)$conf
 head(swiss)
 round(cor(swiss),2)
 with(swiss, plot(Fertility, Examination))
+
+## chi-squared test is used to compare observed frequencies with the 
+## frequencies expected under some null hypothesis
+eye <- margin.table(HairEyeColor,2)
+eye
+chisq.test(eye)
+chisq.test(eye, p = c(0.37, 0.36, 0.15, 0.12))
 
 
