@@ -78,4 +78,34 @@ eye
 chisq.test(eye)
 chisq.test(eye, p = c(0.37, 0.36, 0.15, 0.12))
 
+## test of variance anova
 
+## Generate the data
+set.seed(101)
+Y1 <- c(rnorm(n=500, mean = 5, sd = 1), rnorm(n=500, mean = 6, sd = 1), 
+        rnorm(n=500, mean = 9, sd = 1 ))
+F1 <- factor(rep(c("A", "B", "C"), each = 500))
+
+## Plot the data
+plot(density(Y1[F1=="A"], adjust = 1.5), col = "darkgreen", xlim = c(2,12),
+     ylim=c(0,0.4), xlab = "Y1", main = "")
+points(density(Y1[F1=="B"], adjust = 1.5), type = "l", col = "steelblue")
+points(density(Y1[F1=="C"], adjust = 1.5), type = "l", col = "darkred")
+
+
+## Anova test
+aovY1 <- aov(Y1 ~ F1)
+summary(aovY1)
+TukeyHSD(aovY1)
+tapply(Y1, F1, mean)
+boxplot(Y1 ~ F1)
+
+## two way anova
+warpbreaks
+aov1 <- aov(breaks ~ wool + tension + wool:tension, data = warpbreaks)
+summary(aov1)
+TukeyHSD(aov1)
+tapply(warpbreaks$breaks, warpbreaks$wool, mean)
+boxplot(breaks ~ wool, data = warpbreaks)
+tapply(warpbreaks$breaks, warpbreaks$tension, mean)
+boxplot(breaks ~ tension, data = warpbreaks)
